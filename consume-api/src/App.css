@@ -1,0 +1,8 @@
+#root {
+  padding-left: 2rem;
+  text-align: center;
+}
+
+.name {
+  color: hsl(277, 95%, 60%) 40%;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Url Shortener</title>
+
+    <style>
+        :root {
+            color-scheme: light dark;
+        }
+
+        body {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: 600;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 128px;
+            height: 40px;
+            margin: 0 auto;
+        }
+
+        p {
+            color: red;
+            font-weight: 600;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <h1>Url Shortener</h1>
+
+    <form action="{% url 'home' %}" method="post">
+        {% csrf_token %}
+
+        <div>
+            <h2>Put Your Complete Url</h2>
+            <input type="text" name="complete_url" required>
+        </div>
+
+        <button type="submit">Create Short Url</button>
+
+    </form>
+
+    {% if url %}
+        <a href="{% url 'redirect' url.short_url %}">
+            Your short url is {{url.short_url}}
+        </a>
+    {% endif %}
+
+    {% for message in messages %}
+        <p>{{message}}</p>
+    {% endfor %}
+
+</body>
+
+</html>
